@@ -11,6 +11,7 @@ import {
   entryProgress,
   useProgressStore,
 } from "@/lib/store";
+import { GithubSourceLink } from "./github-source-link";
 import { ProgressBar } from "./progress-bar";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -47,7 +48,8 @@ export function DetailView({
 
   return (
     <div className="relative mx-auto w-full max-w-lg flex-1 px-5 pb-20 pt-6 sm:px-10 sm:pt-10 lg:px-16">
-      <div className="fixed right-4 top-4 z-40 sm:right-6 sm:top-6">
+      <div className="fixed right-4 top-4 z-40 flex items-center gap-2 sm:right-6 sm:top-6">
+        <GithubSourceLink />
         <ThemeToggle />
       </div>
       <button

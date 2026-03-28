@@ -8,6 +8,7 @@ import {
 } from "@/lib/store";
 import { DataTools } from "./data-tools";
 import { EntryCard } from "./entry-card";
+import { GithubSourceLink } from "./github-source-link";
 import { ThemeToggle } from "./theme-toggle";
 
 const SECTIONS: Section[] = ["books", "videos", "playlistsCourses"];
@@ -36,6 +37,7 @@ export function HomeView({
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
+          <GithubSourceLink />
           <ThemeToggle />
           <button
             type="button"
