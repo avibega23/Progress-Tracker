@@ -1,6 +1,12 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import type { Entry, EntryStatus, Milestone, PlaylistCourseKind, Section } from "./types";
+import type {
+  Entry,
+  EntryStatus,
+  Milestone,
+  PlaylistCourseKind,
+  Section,
+} from "./types";
 
 function now() {
   return Date.now();
@@ -31,6 +37,16 @@ export interface ProgressState {
   completeCurrentMilestone: (id: string) => void;
   getActiveInSection: (section: Section) => Entry | undefined;
   canStart: (id: string) => boolean;
+  bulkAddFromImport: (
+    items: Array<{
+      section: Section;
+      title: string;
+      kind?: PlaylistCourseKind;
+      notes?: string;
+      milestoneTitles: string[];
+    }>,
+  ) => void;
+  replaceAllEntries: (entries: Entry[]) => void;
 }
 
 function emptyMilestones(titles: string[]): Milestone[] {
@@ -163,6 +179,16 @@ export const useProgressStore = create<ProgressState>()(
           ),
         });
         return { ok: true };
+      },
+
+      bulkAddFromImport: (items) => {
+        for (const item of items) {
+          get().addEntry(item);
+        }
+      },
+
+      replaceAllEntries: (entries) => {
+        set({ entries });
       },
 
       completeCurrentMilestone: (id) => {

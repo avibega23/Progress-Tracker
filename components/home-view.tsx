@@ -6,6 +6,7 @@ import {
   entriesBySection,
   useProgressStore,
 } from "@/lib/store";
+import { DataTools } from "./data-tools";
 import { EntryCard } from "./entry-card";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -101,6 +102,10 @@ export function HomeView({
           );
         })}
       </section>
+
+      <div className="mt-14">
+        <DataTools />
+      </div>
     </div>
   );
 }
